@@ -35,6 +35,5 @@ public class SomministrazioneVacciniController {
             System.out.println("\nI dati della giornata:\n");
             System.out.println( somministrazioneVaccini );
         }
-
     }
 }

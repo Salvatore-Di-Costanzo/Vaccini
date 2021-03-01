@@ -3,8 +3,6 @@ package com.Vaccini.Vaccini.Model;
 import lombok.*;
 
 import javax.persistence.*;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 @Entity
 @Getter
@@ -71,14 +69,6 @@ public class SomministrazioneVaccini {
 
     @Column(name="nome_area")
     String nome_area;
-
-    /*@Override
-    public String toString(){
-        return "Data Somministrazione: " + this.data_somministrazione + " " +
-                "Regione: " + this.nome_area + " " +
-                "Totale: "+ this.totale ;
-    }*/
-
 
 
 }
