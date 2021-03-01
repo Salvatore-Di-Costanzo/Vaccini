@@ -21,19 +21,19 @@ public class SomministrazioneVacciniController {
     SomministrazioneVacciniService somministrazioneVacciniService;
 
     @GetMapping("/vacciniOggi")
-    public void vacciniOggi (@RequestParam(value = "data",required = false,defaultValue = "")String data) throws ParseException {
+    public void vacciniOggi(@RequestParam(value = "data", required = false, defaultValue = "") String data) throws ParseException {
         List<SomministrazioneVaccini> somministrazioneVaccini = null;
-        if(data.isEmpty())
+        if (data.isEmpty())
             somministrazioneVaccini = somministrazioneVacciniService.retriveDatibyData(new Date());
-        else{
+        else {
             somministrazioneVaccini = somministrazioneVacciniService.retriveDatibyData(new SimpleDateFormat("yyyy-MM-dd").parse(data));
         }
 
-        if ( somministrazioneVaccini == null )
-            System.out.println("\nNon sono ancora stati caricati i dati vaccinali per la giornata odierna\n");
+        if (somministrazioneVaccini == null)
+            log.info("\nNon sono ancora stati caricati i dati vaccinali per la giornata odierna\n");
         else {
-            System.out.println("\nI dati della giornata:\n");
-            System.out.println( somministrazioneVaccini );
+            log.info("\nI dati della giornata:\n");
+            log.info("{}", somministrazioneVaccini);
         }
     }
 }
