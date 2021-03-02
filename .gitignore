@@ -33,3 +33,4 @@ build/
 .vscode/
 /src/main/resources/datiResoconto.csv
 /src/main/resources/datiSomministrazioni.csv
+/src/main/resources/datiContagi.csv

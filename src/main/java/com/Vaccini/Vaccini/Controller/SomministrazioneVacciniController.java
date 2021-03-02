@@ -1,7 +1,9 @@
 package com.Vaccini.Vaccini.Controller;
 
+import com.Vaccini.Vaccini.Model.Contagi;
 import com.Vaccini.Vaccini.Model.SomministrazioneVaccini;
 import com.Vaccini.Vaccini.Model.SummaryVaccini;
+import com.Vaccini.Vaccini.Service.ContagiService;
 import com.Vaccini.Vaccini.Service.SomministrazioneVacciniService;
 import com.Vaccini.Vaccini.Service.SummaryVacciniService;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +25,9 @@ public class SomministrazioneVacciniController {
     @Autowired
     SummaryVacciniService summaryVacciniService;
 
+    @Autowired
+    ContagiService contagiService;
+
     @GetMapping("/vacciniOggi")
     public List<SomministrazioneVaccini> vacciniOggi() {
         List<SomministrazioneVaccini> somministrazioneVaccini = somministrazioneVacciniService.retriveDatibyData(new Date());;
@@ -43,5 +48,10 @@ public class SomministrazioneVacciniController {
     @GetMapping("/summaryVaccini")
     public List<SummaryVaccini> summaryVaccini() {
         return summaryVacciniService.getSummary();
+    }
+
+    @GetMapping("/contagi")
+    public List<Contagi> contagi() {
+       return contagiService.getContagi();
     }
 }
