@@ -23,6 +23,26 @@ CREATE TABLE somministrazioneVaccini
 )
 AS
 SELECT NULL,*
-FROM CSVREAD('C:\\Users\\sdicostanzo\\Desktop\\Vaccini\\src\\main\\resources\\dati.csv',null);
+FROM CSVREAD('C:\\Users\\sdicostanzo\\Desktop\\Vaccini\\src\\main\\resources\\datiSomministrazioni.csv',null);
+
+
+DROP TABLE IF EXISTS summaryVaccini;
+
+CREATE TABLE summaryVaccini
+(
+  id INTEGER AUTO_INCREMENT  PRIMARY KEY,
+  area VARCHAR(250) DEFAULT NULL,
+  dosi_somministrate INTEGER NOT NULL,
+  dosi_consegnate INTEGER NOT NULL,
+  percentuale_somministrazione FLOAT NOT NULL,
+  ultimo_aggiornamento DATE NOT NULL,
+  codice_NUTS1 VARCHAR(250) NOT NULL,
+  codice_NUTS2 VARCHAR(250) NOT NULL,
+  codice_regione_ISTAT INTEGER NOT NULL,
+  nome_area VARCHAR(250) NOT NULL
+)
+AS
+SELECT NULL,*
+FROM CSVREAD('C:\\Users\\sdicostanzo\\Desktop\\Vaccini\\src\\main\\resources\\datiResoconto.csv',null);
 
 
