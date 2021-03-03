@@ -17,6 +17,7 @@ import java.util.List;
 
 @Slf4j
 @RestController
+@CrossOrigin
 public class SomministrazioneVacciniController {
 
     @Autowired
@@ -55,7 +56,6 @@ public class SomministrazioneVacciniController {
        return contagiService.getContagi();
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/nomiRegioni")
     public List<String> nomiRegioni(){
         return summaryVacciniService.getNomiRegioni();
