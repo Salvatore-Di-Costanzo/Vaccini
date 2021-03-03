@@ -54,4 +54,10 @@ public class SomministrazioneVacciniController {
     public List<Contagi> contagi() {
        return contagiService.getContagi();
     }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping("/nomiRegioni")
+    public List<String> nomiRegioni(){
+        return summaryVacciniService.getNomiRegioni();
+    }
 }
