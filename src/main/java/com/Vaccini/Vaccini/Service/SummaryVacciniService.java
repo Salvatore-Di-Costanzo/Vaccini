@@ -17,7 +17,7 @@ public class SummaryVacciniService  {
         return summaryVacciniRepository.findAll();
     }
 
-    public List<String> getNomiRegioni () {
-        return summaryVacciniRepository.nomiRegioni();
+    public String getNomiRegioni (Integer i) {
+        return summaryVacciniRepository.nomiRegioni(i);
     }
 }

@@ -1,5 +1,6 @@
 package com.Vaccini.Vaccini.Controller;
 
+import com.Vaccini.Vaccini.DTO.RegioneContagi;
 import com.Vaccini.Vaccini.Model.Contagi;
 import com.Vaccini.Vaccini.Model.SomministrazioneVaccini;
 import com.Vaccini.Vaccini.Model.SummaryVaccini;
@@ -12,7 +13,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 @Slf4j
@@ -56,11 +59,17 @@ public class SomministrazioneVacciniController {
        return contagiService.getContagi();
     }
 
-    @GetMapping("/nomiRegioni")
-    public List<String> nomiRegioni(){
-        return summaryVacciniService.getNomiRegioni();
+    public String nomiRegioni(Integer i){
+        return summaryVacciniService.getNomiRegioni(i);
     }
 
-    @GetMapping("/nuoviPositivi")
-    public List<Integer> nuoviPositivi() { return contagiService.getNuoviPositivi(); }
+    public Integer nuoviPositivi(Integer i) { return contagiService.getNuoviPositivi(i); }
+
+    @GetMapping("/regioniContagi")
+    public List<RegioneContagi> getDati() {
+        List<RegioneContagi> datiRegionali = new ArrayList<>();
+        for(Integer i = 1; i < 22 ; i++)
+            datiRegionali.add(new RegioneContagi(nomiRegioni(i),nuoviPositivi(i)));
+        return datiRegionali;
+    }
 }

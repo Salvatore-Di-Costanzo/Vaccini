@@ -19,8 +19,8 @@ public class ContagiService {
 
     }
 
-    public List<Integer> getNuoviPositivi() {
-        return contagiRepository.getNuoviPositivi();
+    public Integer getNuoviPositivi(Integer i) {
+        return contagiRepository.getNuoviPositivi(i);
     }
 
 }
