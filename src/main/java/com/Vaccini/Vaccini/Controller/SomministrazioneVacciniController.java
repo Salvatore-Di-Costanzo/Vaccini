@@ -60,4 +60,7 @@ public class SomministrazioneVacciniController {
     public List<String> nomiRegioni(){
         return summaryVacciniService.getNomiRegioni();
     }
+
+    @GetMapping("/nuoviPositivi")
+    public List<Integer> nuoviPositivi() { return contagiService.getNuoviPositivi(); }
 }
