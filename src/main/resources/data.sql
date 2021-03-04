@@ -23,7 +23,7 @@ CREATE TABLE somministrazioneVaccini
 )
 AS
 SELECT NULL,*
-FROM CSVREAD('C:\\Users\\sdicostanzo\\Desktop\\Vaccini\\src\\main\\resources\\datiSomministrazioni.csv',null);
+FROM CSVREAD('src\\main\\resources\\datiSomministrazioni.csv',null);
 
 
 DROP TABLE IF EXISTS summaryVaccini;
@@ -43,7 +43,7 @@ CREATE TABLE summaryVaccini
 )
 AS
 SELECT NULL,*
-FROM CSVREAD('C:\\Users\\sdicostanzo\\Desktop\\Vaccini\\src\\main\\resources\\datiResoconto.csv',null);
+FROM CSVREAD('src\\main\\resources\\datiResoconto.csv',null);
 
 DROP TABLE IF EXISTS contagi;
 
@@ -83,6 +83,6 @@ CREATE TABLE contagi
 )
 AS
 SELECT NULL,*
-FROM CSVREAD('C:\\Users\\sdicostanzo\\Desktop\\Vaccini\\src\\main\\resources\\datiContagi.csv',null);
+FROM CSVREAD('src\\main\\resources\\datiContagi.csv',null);
 
 
