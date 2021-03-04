@@ -86,8 +86,7 @@ const CaricaDati = () => {
         }, []);
     return (
         <div className="App">
-            <h1>Contagi</h1>
-            <div>
+            <div style={{ position: "relative", margin: "auto", width: "80vw" }}>
                 <Bar
                     data={chartData}
                     options={{
