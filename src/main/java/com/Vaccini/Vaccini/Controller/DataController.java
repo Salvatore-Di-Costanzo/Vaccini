@@ -21,7 +21,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @CrossOrigin
-public class SomministrazioneVacciniController {
+public class DataController {
 
     @Autowired
     SomministrazioneVacciniService somministrazioneVacciniService;
