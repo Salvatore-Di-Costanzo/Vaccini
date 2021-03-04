@@ -1,10 +1,8 @@
 package com.Vaccini.Vaccini.Model;
 
-import com.sun.javafx.beans.IDProperty;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
 @Getter
@@ -18,95 +16,95 @@ public class Contagi {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
-    Integer id;
+    private Integer id;
 
     @Column(name="data")
-    String data;
+    private String data;
 
     @Column(name="stato")
-    String stato;
+    private String stato;
 
     @Column(name="codice_regione")
-    Integer codice_regione;
+    private Integer codice_regione;
 
     @Column(name="denominazione_regione")
-    String denominazione_regione;
+    private String denominazione_regione;
 
     @Column(name = "lat")
-    Float latitudine;
+    private Float latitudine;
 
     @Column(name = "long")
-    Float longitudine;
+    private Float longitudine;
 
     @Column(name = "ricoverati_con_sintomi")
-    Integer ricoverati_con_sintomi;
+    private Integer ricoverati_con_sintomi;
 
     @Column(name = "terapia_intensiva")
-    Integer terapia_intensiva;
+    private Integer terapia_intensiva;
 
     @Column(name = "totale_ospedalizzati")
-    Integer totale_ospedalizzati;
+    private Integer totale_ospedalizzati;
 
     @Column(name = "isolamento_domiciliare")
-    Integer isolamento_domiciliare;
+    private Integer isolamento_domiciliare;
 
     @Column(name = "totale_positivi")
-    Integer totale_positivi;
+    private Integer totale_positivi;
 
     @Column(name = "variazione_totale_positivi")
-    Integer variazione_totale_positivi;
+    private Integer variazione_totale_positivi;
 
     @Column(name = "nuovi_positivi")
-    Integer nuovi_positivi;
+    private Integer nuovi_positivi;
 
     @Column(name = "dimessi_guariti")
-    Integer dimessi_guariti;
+    private Integer dimessi_guariti;
 
     @Column(name = "deceduti")
-    Integer deceduti;
+    private Integer deceduti;
 
     @Column(name = "casi_da_sospetto_diagnostico")
-    Integer casi_da_sospetto_diagnostico;
+    private Integer casi_da_sospetto_diagnostico;
 
     @Column(name = "casi_da_screening")
-    Integer casi_da_screening;
+    private Integer casi_da_screening;
 
     @Column(name = "totale_casi")
-    Integer totale_casi;
+    private Integer totale_casi;
 
     @Column(name = "tamponi")
-    Integer tamponi;
+    private Integer tamponi;
 
     @Column(name = "casi_testati")
-    Integer casi_testati;
+    private Integer casi_testati;
 
     @Column(name = "note")
-    String note;
+    private String note;
 
     @Column(name = "ingressi_terapia_intensiva")
-    Integer ingressi_terapia_intensiva;
+    private Integer ingressi_terapia_intensiva;
 
     @Column(name = "note_test")
-    String note_test;
+    private String note_test;
 
     @Column(name = "note_casi")
-    String note_casi;
+    private String note_casi;
 
     @Column(name = "totale_positivi_test_molecolare")
-    Integer totale_positivi_test_molecolare;
+    private Integer totale_positivi_test_molecolare;
 
     @Column(name = "totale_positivi_test_antigenico_rapido")
-    Integer totale_positivi_test_antigenico_rapido;
+    private Integer totale_positivi_test_antigenico_rapido;
 
     @Column(name = "tamponi_test_molecolare")
-    Integer tamponi_test_molecolare;
+    private Integer tamponi_test_molecolare;
 
     @Column(name = "tamponi_test_antigenico_rapido")
-    Integer tamponi_test_antigenico_rapido;
+    private Integer tamponi_test_antigenico_rapido;
 
     @Column(name = "codice_nuts_1")
-    String codice_nuts_1;
+    private String codice_nuts_1;
 
     @Column(name = "codice_nuts_2")
-    String codice_nuts_2;
+    private String codice_nuts_2;
 }
