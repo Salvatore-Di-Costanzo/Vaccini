@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -67,13 +68,13 @@ public class DataController {
 
     public Integer nuoviPositivi(Integer i) { return contagiService.getNuoviPositivi(i); }
 
-    public void positiviPerData(String data) throws IOException, SQLException, ClassNotFoundException {contagiService.positiviPerData(data);}
+    public void positiviPerData(String data) throws IOException, SQLException {contagiService.positiviPerData(data);}
 
     @GetMapping("/regioniContagi")
     public List<RegioneContagi> getDati(@RequestParam(value = "data", required = false, defaultValue = "") String data) throws IOException, SQLException, ClassNotFoundException {
         List<RegioneContagi> datiRegionali = new ArrayList<>();
         if (!data.isEmpty())
-            positiviPerData(data);
+            positiviPerData(data.replace("-",""));
         for(Integer i = 1; i < 22 ; i++)
             datiRegionali.add(new RegioneContagi(nomiRegioni(i),nuoviPositivi(i)));
         return datiRegionali;

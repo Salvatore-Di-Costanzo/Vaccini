@@ -28,7 +28,7 @@
 <body>
     <div align="center">
         <form th:action="@{/regioniContagi}" method="get">
-            <input id="data" class="form-control m-1" placeholder="Inserisci Data" type="text" name="data">
+            <input id="data" class="form-control m-1" placeholder="Inserisci Data" type="date" name="data" min="2021-03-01">
             <span class="input-group-btn">
                 <button id="inviaData" type="submit" class="btn btn-success m-1">Carica</button>
             </span>
