@@ -10,6 +10,7 @@ import com.Vaccini.Vaccini.Service.SummaryVacciniService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -22,7 +23,7 @@ import java.util.Date;
 import java.util.List;
 
 @Slf4j
-@RestController
+@Controller
 @CrossOrigin
 public class DataController {
 
@@ -35,9 +36,19 @@ public class DataController {
     @Autowired
     ContagiService contagiService;
 
+    @GetMapping("/index")
+    public String homePage(){
+        return "graph";
+    }
+
+    @GetMapping("/errorPage")
+    public String errorPage(){
+        return "error";
+    }
+
     @GetMapping("/vacciniOggi")
     public List<SomministrazioneVaccini> vacciniOggi() {
-        List<SomministrazioneVaccini> somministrazioneVaccini = somministrazioneVacciniService.retriveDatibyData(new Date());;
+        List<SomministrazioneVaccini> somministrazioneVaccini = somministrazioneVacciniService.retriveDatibyData(new Date());
         return somministrazioneVaccini;
     }
 
@@ -59,24 +70,41 @@ public class DataController {
 
     @GetMapping("/contagi")
     public List<Contagi> contagi() {
-       return contagiService.getContagi();
+        return contagiService.getContagi();
     }
 
-    public String nomiRegioni(Integer i){
+    public String nomiRegioni(Integer i) {
         return summaryVacciniService.getNomiRegioni(i);
     }
 
-    public Integer nuoviPositivi(Integer i) { return contagiService.getNuoviPositivi(i); }
+    public Integer nuoviPositivi(Integer i) {
+        return contagiService.getNuoviPositivi(i);
+    }
 
-    public void positiviPerData(String data) throws IOException, SQLException {contagiService.positiviPerData(data);}
+    public String positiviPerData(String data) throws IOException, SQLException {
+       return contagiService.positiviPerData(data);
+    }
 
     @GetMapping("/regioniContagi")
-    public List<RegioneContagi> getDati(@RequestParam(value = "data", required = false, defaultValue = "") String data) throws IOException, SQLException, ClassNotFoundException {
+    @ResponseBody
+    public List<RegioneContagi> getDati(@RequestParam(value = "dataF", required = false, defaultValue = "") String data) throws IOException, SQLException {
+        String results = null;
         List<RegioneContagi> datiRegionali = new ArrayList<>();
-        if (!data.isEmpty())
-            positiviPerData(data.replace("-",""));
-        for(Integer i = 1; i < 22 ; i++)
-            datiRegionali.add(new RegioneContagi(nomiRegioni(i),nuoviPositivi(i)));
+        if (!data.isEmpty()) {
+            results = positiviPerData(data);
+        } else {
+            //results = positiviPerData(LocalDate.now().toString());
+        }
+        log.info(results);
+        for (Integer i = 1; i < 22; i++)
+            datiRegionali.add(new RegioneContagi(nomiRegioni(i), nuoviPositivi(i)));
+
+/*        if (results.equals("KO")){
+            return "paginaAtterraggio";
+        }else{
+            return visualizzaDati;
+        }*/
+
         return datiRegionali;
     }
 }

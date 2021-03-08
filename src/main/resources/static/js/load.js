@@ -1,16 +1,19 @@
-$("#inviaData").on("click",function(e) {
-    e.preventDefault();
+$(document).ready(function () {
+
+$("#formData").on("submit",function(e) {
+
     $.ajax({
         type: "GET",
-        data: $(this).val(),
-        url: "/regioniContagi?data="+data,
-
+        url: "regioniContagi",
+        data: {dataF: $("#dataF").val()},
 
         success: function(result) {
-            alert('ok');
+            $("#id-22").html(result);
         },
         error: function(result) {
             alert('error');
         }
+
     });
+});
 });

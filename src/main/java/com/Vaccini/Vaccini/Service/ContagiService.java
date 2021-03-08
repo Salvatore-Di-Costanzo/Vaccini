@@ -8,12 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
 @Component
@@ -36,13 +39,33 @@ public class ContagiService {
         return contagiRepository.getNuoviPositivi(i);
     }
 
-    public void positiviPerData(String data) throws IOException, SQLException {
-        URL contagi = new URL("https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-regioni/dpc-covid19-ita-regioni-" + data + ".csv");
+    public String positiviPerData(String data) throws IOException, SQLException {
+        URL contagi = new URL("https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-regioni/dpc-covid19-ita-regioni-" + data.replace("-","") + ".csv");
         log.info(contagi.toString());
-        ReadableByteChannel rbc3 = Channels.newChannel(contagi.openStream());
-        FileOutputStream fos3 = new FileOutputStream(PATH + "\\datiContagi.csv");
+        FileOutputStream fos3;
+        ReadableByteChannel rbc3;
+
+        try {
+            rbc3 = Channels.newChannel(contagi.openStream());
+            fos3 = new FileOutputStream(PATH + "\\datiContagi.csv");
+        } catch (FileNotFoundException e) {
+
+            contagi = new URL("https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-regioni/dpc-covid19-ita-regioni-latest.csv");
+            log.info(contagi.toString());
+            rbc3 = Channels.newChannel(contagi.openStream());
+            fos3 = new FileOutputStream(PATH + "\\datiContagi.csv");
+            fos3.getChannel().transferFrom(rbc3, 0, Long.MAX_VALUE);
+            ContagiRepository.recuperaDati();
+            if (!LocalDate.now().isBefore(LocalDate.parse(data))) {
+
+                return "KO";
+            }
+        }
+
+
         fos3.getChannel().transferFrom(rbc3, 0, Long.MAX_VALUE);
         ContagiRepository.recuperaDati();
+        return "OK";
     }
 
 }

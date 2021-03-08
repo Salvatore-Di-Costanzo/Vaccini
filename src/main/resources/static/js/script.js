@@ -1,3 +1,4 @@
+$(document).ready(function () {
 fetch('http://localhost:8080/regioniContagi')
     .then(response => response.json())
     .then(data => {
@@ -65,7 +66,7 @@ fetch('http://localhost:8080/regioniContagi')
         }
     );
 
-
+});
 
 
 
