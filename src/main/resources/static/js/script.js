@@ -1,7 +1,7 @@
 fetch('http://localhost:8080/regioniContagi')
     .then(response => response.json())
     .then(data => {
-            am4core.ready(function() {
+            am4core.ready(function () {
 
 // Themes begin
                 am4core.useTheme(am4themes_dark);
@@ -49,16 +49,22 @@ fetch('http://localhost:8080/regioniContagi')
                 hoverState.properties.cornerRadiusTopRight = 0;
                 hoverState.properties.fillOpacity = 1;
 
-                series.columns.template.adapter.add("fill", function(fill, target) {
-                    return chart.colors.getIndex(target.dataItem.index);
+                series.columns.template.adapter.add("fill", function (fill, target) {
+                    if (target.dataItem && (target.dataItem.valueY > 2000)) {
+                        return am4core.color("#ff0000");
+                    } else if (target.dataItem && (target.dataItem.valueY > 1000)) {
+                        return am4core.color("#ff4800");
+                    } else {
+                        return am4core.color("#ffd500");
+                    }
                 });
-
 // Cursor
                 chart.cursor = new am4charts.XYCursor();
 
             }); // end am4core.ready()
         }
     );
+
 
 
 

@@ -9,8 +9,11 @@ import com.Vaccini.Vaccini.Service.SomministrazioneVacciniService;
 import com.Vaccini.Vaccini.Service.SummaryVacciniService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -64,9 +67,13 @@ public class DataController {
 
     public Integer nuoviPositivi(Integer i) { return contagiService.getNuoviPositivi(i); }
 
+    public void positiviPerData(String data) throws IOException, SQLException, ClassNotFoundException {contagiService.positiviPerData(data);}
+
     @GetMapping("/regioniContagi")
-    public List<RegioneContagi> getDati() {
+    public List<RegioneContagi> getDati(@RequestParam(value = "data", required = false, defaultValue = "") String data) throws IOException, SQLException, ClassNotFoundException {
         List<RegioneContagi> datiRegionali = new ArrayList<>();
+        if (!data.isEmpty())
+            positiviPerData(data);
         for(Integer i = 1; i < 22 ; i++)
             datiRegionali.add(new RegioneContagi(nomiRegioni(i),nuoviPositivi(i)));
         return datiRegionali;
