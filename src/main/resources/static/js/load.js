@@ -8,6 +8,11 @@ $(document).ready(function () {
 
             success: function (result) {
                 caricaDati();
+                let dataVisualizzata = document.getElementById('dataVisualizzata');
+                let dataInput = document.createTextNode($("#data").val());
+                dataVisualizzata.innerHTML = 'Data: ';
+                dataVisualizzata.appendChild(dataInput);
+
             }
 
         });
