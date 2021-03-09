@@ -32,6 +32,12 @@ public class VacciniApplication {
 		fos1.getChannel().transferFrom(rbc1, 0, Long.MAX_VALUE);
 		fos2.getChannel().transferFrom(rbc2, 0, Long.MAX_VALUE);
 		fos3.getChannel().transferFrom(rbc3, 0, Long.MAX_VALUE);
+		rbc1.close();
+		rbc2.close();
+		rbc3.close();
+		fos1.close();
+		fos2.close();
+		fos3.close();
 		SpringApplication.run(VacciniApplication.class, args);
 	}
 

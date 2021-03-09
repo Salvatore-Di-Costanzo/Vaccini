@@ -2,13 +2,8 @@ package com.Vaccini.Vaccini.Repository;
 
 import com.Vaccini.Vaccini.Model.Contagi;
 import org.apache.ibatis.jdbc.ScriptRunner;
-import org.codehaus.plexus.util.StringUtils;
-import org.h2.tools.RunScript;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-
-
-import javax.sql.DataSource;
 import javax.websocket.server.PathParam;
 import java.io.*;
 import java.sql.*;
@@ -28,7 +23,6 @@ public interface ContagiRepository extends JpaRepository<Contagi, Integer> {
         //Getting the connection
         String mysqlUrl = "jdbc:h2:~/test";
         Connection con = DriverManager.getConnection(mysqlUrl, "sa","password");
-        System.out.println("Connection established......");
         //Initialize the script runner
         ScriptRunner sr = new ScriptRunner(con);
         //Creating a reader object

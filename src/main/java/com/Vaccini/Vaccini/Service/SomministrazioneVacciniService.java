@@ -4,6 +4,7 @@ package com.Vaccini.Vaccini.Service;
 
 import com.Vaccini.Vaccini.Model.SomministrazioneVaccini;
 import com.Vaccini.Vaccini.Repository.SomministrazioneVacciniRepository;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,9 +14,8 @@ import java.util.Date;
 import java.util.List;
 
 @Component
+@NoArgsConstructor
 public class SomministrazioneVacciniService {
-
-    public SomministrazioneVacciniService(){}
 
     @Autowired
     SomministrazioneVacciniRepository somministrazioneVacciniRepository;

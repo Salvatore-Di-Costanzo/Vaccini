@@ -9,7 +9,6 @@ import com.Vaccini.Vaccini.Service.SomministrazioneVacciniService;
 import com.Vaccini.Vaccini.Service.SummaryVacciniService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +16,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -26,8 +24,6 @@ import java.util.List;
 @Controller
 @CrossOrigin
 public class DataController {
-
-    Boolean bypass = true;
 
     @Autowired
     SomministrazioneVacciniService somministrazioneVacciniService;
@@ -50,8 +46,7 @@ public class DataController {
 
     @GetMapping("/vacciniOggi")
     public List<SomministrazioneVaccini> vacciniOggi() {
-        List<SomministrazioneVaccini> somministrazioneVaccini = somministrazioneVacciniService.retriveDatibyData(new Date());
-        return somministrazioneVaccini;
+        return somministrazioneVacciniService.retriveDatibyData(new Date());
     }
 
     @GetMapping("/vaccini")
