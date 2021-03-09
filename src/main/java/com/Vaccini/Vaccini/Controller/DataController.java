@@ -37,12 +37,12 @@ public class DataController {
     ContagiService contagiService;
 
     @GetMapping("/index")
-    public String homePage(){
+    public String homePage() {
         return "graph";
     }
 
     @GetMapping("/errorPage")
-    public String errorPage(){
+    public String errorPage() {
         return "error";
     }
 
@@ -82,7 +82,7 @@ public class DataController {
     }
 
     public String positiviPerData(String data) throws IOException, SQLException {
-       return contagiService.positiviPerData(data);
+        return contagiService.positiviPerData(data);
     }
 
     @GetMapping("/regioniContagi")
