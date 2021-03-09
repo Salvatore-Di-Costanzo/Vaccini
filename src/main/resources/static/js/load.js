@@ -26,5 +26,6 @@ function caricaDati() {
         .then(data => {
             chart.addData(data, 21);
             chart.invalidate();
+            chart.appear();
         });
 }
