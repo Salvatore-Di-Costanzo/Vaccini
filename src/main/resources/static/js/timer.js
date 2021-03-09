@@ -19,6 +19,6 @@ let x = setInterval(function() {
     // If the count down is over, write some text
     if ((hours == 23 && minutes >=30) ) {
         clearInterval(x);
-        document.getElementById("countDown").innerHTML = "Siamo quasi pronti! <br> i dati si aggiorneranno a breve.";
+        document.getElementById("countDown").innerHTML = "<br>Siamo quasi pronti! <br> i dati si aggiorneranno a breve.";
     }
 }, 1000);
