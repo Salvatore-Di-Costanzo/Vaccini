@@ -41,9 +41,9 @@ public class DataController {
         return "graph";
     }
 
-    @GetMapping("/errorPage")
-    public String errorPage() {
-        return "error";
+    @GetMapping("/waitingPage")
+    public String waitingPage() {
+        return "waitingPage";
     }
 
     @GetMapping("/vacciniOggi")

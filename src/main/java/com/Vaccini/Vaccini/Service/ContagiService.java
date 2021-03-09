@@ -2,7 +2,6 @@ package com.Vaccini.Vaccini.Service;
 
 import com.Vaccini.Vaccini.Model.Contagi;
 import com.Vaccini.Vaccini.Repository.ContagiRepository;
-import jdk.nashorn.internal.runtime.logging.Logger;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -14,7 +13,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
