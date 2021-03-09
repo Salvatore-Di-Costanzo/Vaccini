@@ -1,14 +1,17 @@
 $(document).ready(function () {
 
 $("#formData").on("submit",function(e) {
-
+    e.preventDefault();
     $.ajax({
         type: "GET",
-        url: "regioniContagi",
-        data: {dataF: $("#dataF").val()},
+        url: "/regioniContagi",
+        data: {data: $("#data").val()
+
+        },
 
         success: function(result) {
-            $("#id-22").html(result);
+            $('#chartdiv').load(result);
+            console.log(result)
         },
         error: function(result) {
             alert('error');
@@ -17,3 +20,5 @@ $("#formData").on("submit",function(e) {
     });
 });
 });
+
+//$('#inviaData').on("click",caricaChartDiv());

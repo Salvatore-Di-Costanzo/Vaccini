@@ -87,15 +87,15 @@ public class DataController {
 
     @GetMapping("/regioniContagi")
     @ResponseBody
-    public List<RegioneContagi> getDati(@RequestParam(value = "dataF", required = false, defaultValue = "") String data) throws IOException, SQLException {
+    public List<RegioneContagi> getDati(@RequestParam(value = "data", required = false, defaultValue = "") String data) throws IOException, SQLException {
         String results = null;
+        log.info(data);
         List<RegioneContagi> datiRegionali = new ArrayList<>();
         if (!data.isEmpty()) {
             results = positiviPerData(data);
         } else {
             //results = positiviPerData(LocalDate.now().toString());
         }
-        log.info(results);
         for (Integer i = 1; i < 22; i++)
             datiRegionali.add(new RegioneContagi(nomiRegioni(i), nuoviPositivi(i)));
 

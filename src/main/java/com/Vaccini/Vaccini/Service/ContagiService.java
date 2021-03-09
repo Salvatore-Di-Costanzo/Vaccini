@@ -40,7 +40,8 @@ public class ContagiService {
     }
 
     public String positiviPerData(String data) throws IOException, SQLException {
-        URL contagi = new URL("https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-regioni/dpc-covid19-ita-regioni-" + data.replace("-","") + ".csv");
+       String dataMod = data.replace("-","");
+        URL contagi = new URL("https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-regioni/dpc-covid19-ita-regioni-" + dataMod + ".csv");
         log.info(contagi.toString());
         FileOutputStream fos3;
         ReadableByteChannel rbc3;
