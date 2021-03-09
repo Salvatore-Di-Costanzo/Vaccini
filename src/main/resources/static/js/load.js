@@ -8,6 +8,7 @@ $(document).ready(function () {
 
             success: function (result) {
                 caricaDati();
+                document.getElementById('ultimiDati').style.display = "none";
                 let dataVisualizzata = document.getElementById('dataVisualizzata');
                 let dataInput = document.createTextNode($("#data").val());
                 dataVisualizzata.innerHTML = 'Data: ';
