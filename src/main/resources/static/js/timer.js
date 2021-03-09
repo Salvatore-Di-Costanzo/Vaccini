@@ -17,8 +17,8 @@ let x = setInterval(function() {
     document.getElementById("countDown").innerHTML = hours + "h "
         + minutes + "m " + seconds + "s ";
     // If the count down is over, write some text
-    if (distance < 0) {
+    if ((hours == 23 && minutes >=30) ) {
         clearInterval(x);
-        document.getElementById("demo").innerHTML = "Siamo quasi pronti! i dati si aggiorneranno a breve.";
+        document.getElementById("countDown").innerHTML = "Siamo quasi pronti! <br> i dati si aggiorneranno a breve.";
     }
 }, 1000);
