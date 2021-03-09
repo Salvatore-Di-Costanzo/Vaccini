@@ -1,3 +1,5 @@
+let chart;
+
 fetch('http://localhost:8080/regioniContagi')
     .then(response => response.json())
     .then(data => {
@@ -9,14 +11,14 @@ fetch('http://localhost:8080/regioniContagi')
 // Themes end
 
 // Create chart instance
-                var chart = am4core.create("chartdiv", am4charts.XYChart);
+                chart = am4core.create("chartdiv", am4charts.XYChart);
                 chart.scrollbarX = new am4core.Scrollbar();
 
 // Add data
                 chart.data = data;
 
 // Create axes
-                var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+                let categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
                 categoryAxis.dataFields.category = "nomeRegione";
                 categoryAxis.renderer.grid.template.location = 0;
                 categoryAxis.renderer.minGridDistance = 30;
@@ -26,11 +28,11 @@ fetch('http://localhost:8080/regioniContagi')
                 categoryAxis.tooltip.disabled = true;
                 categoryAxis.renderer.minHeight = 110;
 
-                var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+                let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
                 valueAxis.renderer.minWidth = 50;
 
 // Create series
-                var series = chart.series.push(new am4charts.ColumnSeries());
+                let series = chart.series.push(new am4charts.ColumnSeries());
                 series.sequencedInterpolation = true;
                 series.dataFields.valueY = "numeroContagi";
                 series.dataFields.categoryX = "nomeRegione";
@@ -44,7 +46,7 @@ fetch('http://localhost:8080/regioniContagi')
                 series.columns.template.column.fillOpacity = 0.8;
 
 // on hover, make corner radiuses bigger
-                var hoverState = series.columns.template.column.states.create("hover");
+                let hoverState = series.columns.template.column.states.create("hover");
                 hoverState.properties.cornerRadiusTopLeft = 0;
                 hoverState.properties.cornerRadiusTopRight = 0;
                 hoverState.properties.fillOpacity = 1;
