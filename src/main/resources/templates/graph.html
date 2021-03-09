@@ -22,6 +22,7 @@
         }
 
         #chartdiv {
+            background: linear-gradient(45deg, #2d2d2d 9%, black 100%);
             width: 100%;
             height: 800px;
         }
@@ -31,17 +32,18 @@
 
 <form id="formData">
     <div id="divTest" align="center">
+        <h2 id="ultimiDati">I dati più recenti:</h2>
+        <h2 id="dataVisualizzata"></h2>
 
         <input id="data" class="form-control m-1" placeholder="Inserisci Data" type="date" name="data"
-               min="2021-03-01">
+               min="2021-03-01"> <br><br>
         <span class="input-group-btn">
 
-            <button id="inviaData" type="submit" class="btn btn-success m-1">Carica</button>
+            <button id="inviaData" type="submit" class="btn btn-success m-1 btn-toolset">Carica</button>
 
         </span>
 
-        <h2 id="ultimiDati">I dati più recenti:</h2>
-        <h2 id="dataVisualizzata"></h2>
+
     </div>
 </form>
 <div id="chartdiv"></div>
