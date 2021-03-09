@@ -7,25 +7,24 @@ $(document).ready(function () {
             data: {data: $("#data").val()},
 
             success: function (result) {
-                caricaDati();
+                caricaDati(result);
                 document.getElementById('ultimiDati').style.display = "none";
                 let dataVisualizzata = document.getElementById('dataVisualizzata');
                 let dataInput = document.createTextNode($("#data").val());
                 dataVisualizzata.innerHTML = 'Data: ';
                 dataVisualizzata.appendChild(dataInput);
-
             }
 
         });
     });
 });
 
-function caricaDati() {
-    fetch('http://localhost:8080/regioniContagi')
-        .then(response => response.json())
-        .then(data => {
-            chart.addData(data, 21);
-            chart.invalidate();
-            chart.appear();
-        });
+function caricaDati(data) {
+    if (data.length > 21)
+        window.location = "waitingPage";
+    else {
+        chart.addData(data, 21);
+        chart.invalidate();
+        chart.appear();
+    }
 }

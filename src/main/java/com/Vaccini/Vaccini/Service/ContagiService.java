@@ -48,20 +48,16 @@ public class ContagiService {
             rbc3 = Channels.newChannel(contagi.openStream());
             fos3 = new FileOutputStream(PATH + "\\datiContagi.csv");
         } catch (FileNotFoundException e) {
-
             contagi = new URL("https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-regioni/dpc-covid19-ita-regioni-latest.csv");
             log.info(contagi.toString());
             rbc3 = Channels.newChannel(contagi.openStream());
             fos3 = new FileOutputStream(PATH + "\\datiContagi.csv");
             fos3.getChannel().transferFrom(rbc3, 0, Long.MAX_VALUE);
             ContagiRepository.recuperaDati();
-            if (!LocalDate.now().isBefore(LocalDate.parse(data))) {
-
+            if (LocalDate.now().isBefore(LocalDate.parse(data)) || LocalDate.now().isEqual(LocalDate.parse(data))) {
                 return "KO";
             }
         }
-
-
         fos3.getChannel().transferFrom(rbc3, 0, Long.MAX_VALUE);
         ContagiRepository.recuperaDati();
         return "OK";

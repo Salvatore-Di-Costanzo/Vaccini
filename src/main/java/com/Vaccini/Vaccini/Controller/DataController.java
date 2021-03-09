@@ -27,6 +27,8 @@ import java.util.List;
 @CrossOrigin
 public class DataController {
 
+    Boolean bypass = true;
+
     @Autowired
     SomministrazioneVacciniService somministrazioneVacciniService;
 
@@ -93,18 +95,14 @@ public class DataController {
         List<RegioneContagi> datiRegionali = new ArrayList<>();
         if (!data.isEmpty()) {
             results = positiviPerData(data);
-        } else {
-            //results = positiviPerData(LocalDate.now().toString());
         }
         for (Integer i = 1; i < 22; i++)
             datiRegionali.add(new RegioneContagi(nomiRegioni(i), nuoviPositivi(i)));
 
-/*        if (results.equals("KO")){
-            return "paginaAtterraggio";
-        }else{
-            return visualizzaDati;
-        }*/
+        if (results != null && results.equals("KO"))
+            datiRegionali.add(new RegioneContagi("KO", 0));
 
         return datiRegionali;
+
     }
 }
