@@ -17,7 +17,7 @@ let x = setInterval(function() {
     document.getElementById("countDown").innerHTML = hours + "h "
         + minutes + "m " + seconds + "s ";
     // If the count down is over, write some text
-    if ((hours == 23 && minutes >=30) ) {
+    if (hours == 23) {
         clearInterval(x);
         document.getElementById("countDown").innerHTML = "<br>Siamo quasi pronti! <br> i dati si aggiorneranno a breve.";
     }
