@@ -1,6 +1,6 @@
 let chart;
 
-fetch('http://localhost:8080/regioniContagi')
+fetch('/regioniContagi')
     .then(response => response.json())
     .then(data => {
             am4core.ready(function () {
