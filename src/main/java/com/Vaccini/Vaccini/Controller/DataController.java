@@ -25,14 +25,20 @@ import java.util.List;
 @CrossOrigin
 public class DataController {
 
-    @Autowired
-    SomministrazioneVacciniService somministrazioneVacciniService;
+    private final SomministrazioneVacciniService somministrazioneVacciniService;
+
+
+    private final SummaryVacciniService summaryVacciniService;
+
+
+    private final ContagiService contagiService;
 
     @Autowired
-    SummaryVacciniService summaryVacciniService;
-
-    @Autowired
-    ContagiService contagiService;
+    private DataController(SomministrazioneVacciniService somministrazioneVacciniService,SummaryVacciniService summaryVacciniService,ContagiService contagiService){
+        this.somministrazioneVacciniService = somministrazioneVacciniService;
+        this.summaryVacciniService = summaryVacciniService;
+        this.contagiService = contagiService;
+    }
 
     @GetMapping("/index")
     public String homePage() {
@@ -100,4 +106,5 @@ public class DataController {
         return datiRegionali;
 
     }
+
 }
