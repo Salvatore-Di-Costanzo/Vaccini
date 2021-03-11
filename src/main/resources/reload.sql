@@ -23,7 +23,7 @@ CREATE TABLE contagi
   totale_casi INTEGER NOT NULL,
   tamponi INTEGER NOT NULL,
   casi_testati INTEGER NOT NULL,
-  note VARCHAR(250),
+  note VARCHAR(1000),
   ingressi_terapia_intensiva INTEGER NOT NULL,
   note_test VARCHAR(250) ,
   note_casi VARCHAR(500) ,
