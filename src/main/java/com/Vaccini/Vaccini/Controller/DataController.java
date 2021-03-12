@@ -1,6 +1,7 @@
 package com.Vaccini.Vaccini.Controller;
 
 import com.Vaccini.Vaccini.DTO.RegioneContagi;
+import com.Vaccini.Vaccini.MarshalCSV.Marshal;
 import com.Vaccini.Vaccini.Model.Contagi;
 import com.Vaccini.Vaccini.Service.ContagiService;
 import lombok.extern.slf4j.Slf4j;
@@ -58,7 +59,7 @@ public class DataController {
     @GetMapping("/regioniContagi")
     @ResponseBody
     public List<RegioneContagi> getDati(@RequestParam(value = "data", required = false, defaultValue = "") String data) throws IOException, SQLException {
-        String results = null;
+        /*String results = null;
         log.info(data);
         List<RegioneContagi> datiRegionali = new ArrayList<>();
         if (!data.isEmpty()) {
@@ -70,7 +71,8 @@ public class DataController {
         if (results != null && results.equals("KO"))
             datiRegionali.add(new RegioneContagi("KO", 0));
 
-        return datiRegionali;
+        return datiRegionali;*/
+        return Marshal.getDati();
 
     }
 
