@@ -25,15 +25,18 @@ public class Marshal {
         List<RegioneContagi> dati = new ArrayList<>();
         Boolean corretto = true;
         String dataMod = data.replace("-", "");
-        URL contagi = null;
+        URL contagi = new URL("https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-regioni/dpc-covid19-ita-regioni-" + dataMod + ".csv");;
+        URLConnection yc = contagi.openConnection();
+        BufferedReader in = null;
         try{
-            contagi = new URL("https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-regioni/dpc-covid19-ita-regioni-" + dataMod + ".csv");
-        } catch(IOException e){
+            in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
+        } catch(Exception e){
             contagi = new URL("https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-regioni/dpc-covid19-ita-regioni-latest.csv");
+            yc = contagi.openConnection();
+            in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
             corretto = false;
         }
-        URLConnection yc = contagi.openConnection();
-        BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
+
         String inputLine = in.readLine();
         while ((inputLine = in.readLine()) != null) {
             String[] attributes = inputLine.split(",");
