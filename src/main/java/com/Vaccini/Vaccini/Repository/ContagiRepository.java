@@ -18,18 +18,9 @@ public interface ContagiRepository extends JpaRepository<Contagi, Integer> {
     @Query("Select nuovi_positivi from Contagi where id=:id")
     Integer getNuoviPositivi(@PathParam("id") Integer id);
 
-    static void recuperaDati() throws SQLException, FileNotFoundException {
-        DriverManager.registerDriver(new org.h2.Driver());
-        //Getting the connection
-        String mysqlUrl = "jdbc:h2:~/test";
-        Connection con = DriverManager.getConnection(mysqlUrl, "sa","password");
-        //Initialize the script runner
-        ScriptRunner sr = new ScriptRunner(con);
-        //Creating a reader object
-        Reader reader = new BufferedReader(new FileReader(PATH+"/reload.sql"));
-        //Running the script
-        sr.runScript(reader);
+    @Query("Select denominazione_regione from Contagi where id=:id")
+    String getNomeRegioni(@PathParam("id") Integer id);
 
-    }
+
 
 }

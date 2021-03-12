@@ -19,25 +19,12 @@ public class VacciniApplication {
 		File resourcesDirectory = new File("src/main/resources");
 		final String PATH = resourcesDirectory.getAbsolutePath();
 
-
-		URL somministrazione = new URL("https://raw.githubusercontent.com/italia/covid19-opendata-vaccini/master/dati/somministrazioni-vaccini-summary-latest.csv");
-		ReadableByteChannel rbc1 = Channels.newChannel(somministrazione.openStream());
-		FileOutputStream fos1 = new FileOutputStream(PATH + "\\datiSomministrazioni.csv");
-		URL summary = new URL("https://raw.githubusercontent.com/italia/covid19-opendata-vaccini/master/dati/vaccini-summary-latest.csv");
-		ReadableByteChannel rbc2 = Channels.newChannel(summary.openStream());
-		FileOutputStream fos2 = new FileOutputStream(PATH + "\\datiResoconto.csv");
 		URL contagi = new URL("https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-regioni/dpc-covid19-ita-regioni-latest.csv");
-		ReadableByteChannel rbc3 = Channels.newChannel(contagi.openStream());
-		FileOutputStream fos3 = new FileOutputStream(PATH + "\\datiContagi.csv");
-		fos1.getChannel().transferFrom(rbc1, 0, Long.MAX_VALUE);
-		fos2.getChannel().transferFrom(rbc2, 0, Long.MAX_VALUE);
-		fos3.getChannel().transferFrom(rbc3, 0, Long.MAX_VALUE);
-		rbc1.close();
-		rbc2.close();
-		rbc3.close();
-		fos1.close();
-		fos2.close();
-		fos3.close();
+		ReadableByteChannel rbc = Channels.newChannel(contagi.openStream());
+		FileOutputStream fos = new FileOutputStream(PATH + "\\datiContagi.csv");
+		fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
+		rbc.close();
+		fos.close();
 		SpringApplication.run(VacciniApplication.class, args);
 	}
 
