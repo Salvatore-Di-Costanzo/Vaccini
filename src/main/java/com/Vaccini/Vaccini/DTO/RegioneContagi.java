@@ -9,7 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RegioneContagi {
-    String nomeRegione;
-    Integer numeroContagi;
+    String nome_regione;
+    Integer nuovi_positivi;
 
 }
