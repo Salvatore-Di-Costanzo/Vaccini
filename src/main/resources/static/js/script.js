@@ -15,6 +15,7 @@ fetch('/regioniContagi')
                 chart.scrollbarX = new am4core.Scrollbar();
 
 // Add data
+                data.pop();
                 chart.data = data;
 
 // Create axes
