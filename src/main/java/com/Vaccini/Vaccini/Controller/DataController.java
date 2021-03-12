@@ -72,7 +72,7 @@ public class DataController {
             datiRegionali.add(new RegioneContagi("KO", 0));
 
         return datiRegionali;*/
-        return Marshal.getDati();
+        return Marshal.getDati(data);
 
     }
 

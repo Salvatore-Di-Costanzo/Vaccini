@@ -5,12 +5,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.channels.Channels;
+import java.nio.channels.ReadableByteChannel;
+import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,17 +21,26 @@ import java.util.List;
 @Component
 public class Marshal {
     @Bean
-    public static List<RegioneContagi> getDati() throws IOException {
+    public static List<RegioneContagi> getDati(String data) throws IOException {
         List<RegioneContagi> dati = new ArrayList<>();
-
-        URL oracle = new URL("https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-regioni/dpc-covid19-ita-regioni-latest.csv");
-        URLConnection yc = oracle.openConnection();
+        Boolean corretto = true;
+        String dataMod = data.replace("-", "");
+        URL contagi = null;
+        try{
+            contagi = new URL("https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-regioni/dpc-covid19-ita-regioni-" + dataMod + ".csv");
+        } catch(IOException e){
+            contagi = new URL("https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-regioni/dpc-covid19-ita-regioni-latest.csv");
+            corretto = false;
+        }
+        URLConnection yc = contagi.openConnection();
         BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
-        String inputLine;
-        inputLine = in.readLine();
+        String inputLine = in.readLine();
         while ((inputLine = in.readLine()) != null) {
             String[] attributes = inputLine.split(",");
             dati.add(new RegioneContagi(attributes[3],Integer.parseInt(attributes[12])));
+        }
+        if (!corretto){
+            dati.add(new RegioneContagi("Error",0));
         }
         return dati;
     }
