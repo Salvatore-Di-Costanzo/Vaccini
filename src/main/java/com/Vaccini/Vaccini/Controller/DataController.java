@@ -2,8 +2,7 @@ package com.Vaccini.Vaccini.Controller;
 
 import com.Vaccini.Vaccini.DTO.RegioneContagi;
 import com.Vaccini.Vaccini.MarshalCSV.Marshal;
-import com.Vaccini.Vaccini.Model.Contagi;
-import com.Vaccini.Vaccini.Service.ContagiService;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,10 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Slf4j
@@ -22,12 +17,8 @@ import java.util.List;
 @CrossOrigin
 public class DataController {
 
-    private final ContagiService contagiService;
-
     @Autowired
-    private DataController(ContagiService contagiService){
-        this.contagiService = contagiService;
-    }
+    Marshal marshal;
 
     @GetMapping("/index")
     public String homePage() {
@@ -39,40 +30,11 @@ public class DataController {
         return "waitingPage";
     }
 
-    @GetMapping("/contagi")
-    public List<Contagi> contagi() {
-        return contagiService.getContagi();
-    }
-
-    public String nomiRegioni(Integer i) {
-        return contagiService.getNomiRegioni(i);
-    }
-
-    public Integer nuoviPositivi(Integer i) {
-        return contagiService.getNuoviPositivi(i);
-    }
-
-    public String positiviPerData(String data) throws IOException, SQLException {
-        return contagiService.positiviPerData(data);
-    }
-
     @GetMapping("/regioniContagi")
     @ResponseBody
     public List<RegioneContagi> getDati(@RequestParam(value = "data", required = false, defaultValue = "") String data) throws IOException, SQLException {
-        /*String results = null;
-        log.info(data);
-        List<RegioneContagi> datiRegionali = new ArrayList<>();
-        if (!data.isEmpty()) {
-            results = positiviPerData(data);
-        }
-        for (Integer i = 1; i < 22; i++)
-            datiRegionali.add(new RegioneContagi(nomiRegioni(i), nuoviPositivi(i)));
 
-        if (results != null && results.equals("KO"))
-            datiRegionali.add(new RegioneContagi("KO", 0));
-
-        return datiRegionali;*/
-        return Marshal.getDati(data);
+        return marshal.getDati(data);
 
     }
 
