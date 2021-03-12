@@ -2,11 +2,7 @@ package com.Vaccini.Vaccini.Controller;
 
 import com.Vaccini.Vaccini.DTO.RegioneContagi;
 import com.Vaccini.Vaccini.Model.Contagi;
-import com.Vaccini.Vaccini.Model.SomministrazioneVaccini;
-import com.Vaccini.Vaccini.Model.SummaryVaccini;
 import com.Vaccini.Vaccini.Service.ContagiService;
-import com.Vaccini.Vaccini.Service.SomministrazioneVacciniService;
-import com.Vaccini.Vaccini.Service.SummaryVacciniService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,18 +21,10 @@ import java.util.List;
 @CrossOrigin
 public class DataController {
 
-    private final SomministrazioneVacciniService somministrazioneVacciniService;
-
-
-    private final SummaryVacciniService summaryVacciniService;
-
-
     private final ContagiService contagiService;
 
     @Autowired
-    private DataController(SomministrazioneVacciniService somministrazioneVacciniService,SummaryVacciniService summaryVacciniService,ContagiService contagiService){
-        this.somministrazioneVacciniService = somministrazioneVacciniService;
-        this.summaryVacciniService = summaryVacciniService;
+    private DataController(ContagiService contagiService){
         this.contagiService = contagiService;
     }
 
@@ -50,34 +38,13 @@ public class DataController {
         return "waitingPage";
     }
 
-    @GetMapping("/vacciniOggi")
-    public List<SomministrazioneVaccini> vacciniOggi() {
-        return somministrazioneVacciniService.retriveDatibyData(new Date());
-    }
-
-    @GetMapping("/vaccini")
-    public List<SomministrazioneVaccini> vaccini(@RequestParam(value = "data", required = false, defaultValue = "") String data) throws ParseException {
-        List<SomministrazioneVaccini> somministrazioneVaccini = null;
-        if (data.isEmpty())
-            somministrazioneVaccini = somministrazioneVacciniService.retriveDatibyData(new Date());
-        else {
-            somministrazioneVaccini = somministrazioneVacciniService.retriveDatibyData(new SimpleDateFormat("yyyy-MM-dd").parse(data));
-        }
-        return somministrazioneVaccini;
-    }
-
-    @GetMapping("/summaryVaccini")
-    public List<SummaryVaccini> summaryVaccini() {
-        return summaryVacciniService.getSummary();
-    }
-
     @GetMapping("/contagi")
     public List<Contagi> contagi() {
         return contagiService.getContagi();
     }
 
     public String nomiRegioni(Integer i) {
-        return summaryVacciniService.getNomiRegioni(i);
+        return contagiService.getNomiRegioni(i);
     }
 
     public Integer nuoviPositivi(Integer i) {
