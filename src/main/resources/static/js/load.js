@@ -2,13 +2,13 @@ $(document).ready(function () {
     $("#formData").on("submit", function (e) {
         e.preventDefault();
         $.ajax({
-            type: "GET",
-            url: "/regioniContagi",
+            type: 'POST',
+            url: '/regioniContagi',
             data: {data: $("#data").val()},
 
             success: function (result) {
                 caricaDati(result);
-                document.getElementById('ultimiDati').style.display = "none";
+                document.getElementById('ultimiDati').style.display = 'none';
                 let dataVisualizzata = document.getElementById('dataVisualizzata');
                 let dataInput = document.createTextNode($("#data").val());
                 dataVisualizzata.innerHTML = 'Data: ';

@@ -13,15 +13,21 @@ import java.time.LocalDate;
 import java.util.List;
 
 import java.util.HashMap;
+import java.util.Map;
 
 @Slf4j
 @Controller
 @CrossOrigin
 public class DataController {
-    private static HashMap<String, List<RegioneContagi>> cache = new HashMap<>();
+
+    private final Map<String, List<RegioneContagi>> cache = new HashMap<>();
+    private final Marshal marshal;
 
     @Autowired
-    Marshal marshal;
+    private DataController(Marshal marshal) {
+        this.marshal = marshal;
+    }
+
 
     @GetMapping("/index")
     public String homePage() {
@@ -33,13 +39,15 @@ public class DataController {
         return "waitingPage";
     }
 
-    @GetMapping("/regioniContagi")
+    @PostMapping("/regioniContagi")
     @ResponseBody
-    public List<RegioneContagi> getDati(@RequestParam(value = "data", required = false, defaultValue = "") String data) throws IOException{
-        if (data.isEmpty())
+    public List<RegioneContagi> getDati(@RequestParam(value = "data", required = false) String data) throws IOException {
+        if (data == null) {
             data = LocalDate.now().toString();
-        if (cache.get(data) == null)
-            cache.put(data,marshal.getDati(data));
+        }
+        if (cache.get(data) == null) {
+            cache.put(data, marshal.getDati(data));
+        }
         return cache.get(data);
     }
 
