@@ -48,6 +48,9 @@ public class DataController {
         if (cache.get(data) == null) {
             cache.put(data, marshal.getDati(data));
         }
+        if(data.equals(LocalDate.now().toString())){
+            cache.replace(data, marshal.getDati(data));
+        }
         return cache.get(data);
     }
 
