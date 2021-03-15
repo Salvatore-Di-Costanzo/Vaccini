@@ -1,6 +1,9 @@
 let chart;
 
-fetch('/regioniContagi')
+fetch('/regioniContagi', {
+    method: "post",
+    headers : {data:""}
+})
     .then(response => response.json())
     .then(data => {
             am4core.ready(function () {
@@ -12,7 +15,7 @@ fetch('/regioniContagi')
 
 // Create chart instance
                 chart = am4core.create("chartdiv", am4charts.XYChart);
-                chart.scrollbarX = new am4core.Scrollbar();
+                //chart.scrollbarX = new am4core.Scrollbar();
 
 // Add data
                 data.pop();
