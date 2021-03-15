@@ -1,5 +1,4 @@
 let chart;
-let primo = true;
 
 fetch('/regioniContagi', {
     method: "post",
@@ -19,11 +18,8 @@ fetch('/regioniContagi', {
                 //chart.scrollbarX = new am4core.Scrollbar();
 
 // Add data
-                if(primo){
-                    data.pop();
-                    primo = false;
-                }
-
+                if(data.length > 21 )
+                    data.pop()
                 chart.data = data;
 
 // Create axes
