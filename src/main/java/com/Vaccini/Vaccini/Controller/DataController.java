@@ -20,7 +20,7 @@ import java.util.Map;
 @CrossOrigin
 public class DataController {
 
-    private final Map<LocalDate, List<RegioneContagi>> cache = new HashMap<>();
+    private final Map<String, List<RegioneContagi>> cache = new HashMap<>();
     private final Marshal marshal;
 
     @Autowired
@@ -41,9 +41,9 @@ public class DataController {
 
     @GetMapping("/regioniContagi")
     @ResponseBody
-    public List<RegioneContagi> getDati(@RequestParam(value = "data", required = false) LocalDate data) throws IOException {
+    public List<RegioneContagi> getDati(@RequestParam(value = "data", required = false) String data) throws IOException {
         if (data == null) {
-            data = LocalDate.now();
+            data = LocalDate.now().toString();
         }
         if (cache.get(data) == null) {
             cache.put(data, marshal.getDati(data));

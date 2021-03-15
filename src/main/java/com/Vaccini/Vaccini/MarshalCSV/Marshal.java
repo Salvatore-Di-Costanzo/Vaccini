@@ -15,10 +15,10 @@ import java.util.List;
 @Component
 public class Marshal {
 
-    public List<RegioneContagi> getDati(LocalDate data) throws IOException {
+    public List<RegioneContagi> getDati(String data) throws IOException {
         List<RegioneContagi> dati = new ArrayList<>();
         boolean corretto = true;
-        String dataMod = data.toString().replace("-", "");
+        String dataMod = data.replace("-", "");
         URL contagi = new URL("https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-regioni/dpc-covid19-ita-regioni-" + dataMod + ".csv");
         URLConnection yc = contagi.openConnection();
         BufferedReader in = null;
