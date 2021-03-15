@@ -1,6 +1,9 @@
 let chart;
 
-fetch('/regioniContagi')
+fetch('/regioniContagi', {
+    method: "post",
+    headers : {data:""}
+})
     .then(response => response.json())
     .then(data => {
             am4core.ready(function () {
