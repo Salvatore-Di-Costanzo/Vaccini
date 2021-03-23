@@ -39,7 +39,7 @@ public class DataController {
         return "waitingPage";
     }
 
-    @GetMapping("/regioniContagi")
+    @PostMapping("/regioniContagi")
     @ResponseBody
     public List<RegioneContagi> getDati(@RequestParam(value = "data", required = false) String data) throws IOException {
         if (data == null) {
@@ -54,10 +54,5 @@ public class DataController {
         return cache.get(data);
     }
 
-    @GetMapping("ciao")
-    @ResponseBody
-    public void ciaociao() throws IOException {
-        marshal.getDati("");
-    }
 
 }

@@ -5,10 +5,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.Map;
 
 @Data
 @NoArgsConstructor
 public class CsvBean {
+ /*   public CsvBean(Map<?,CsvBean> map) {
+        this.data = map.get("data");
+
+    }*/
 
     @JsonProperty("data")
     private String data;

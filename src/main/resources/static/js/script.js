@@ -6,6 +6,7 @@ fetch('/regioniContagi', {
 })
     .then(response => response.json())
     .then(data => {
+        console.log(data)
             am4core.ready(function () {
 
 // Themes begin
