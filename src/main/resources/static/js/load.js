@@ -20,7 +20,7 @@ $(document).ready(function () {
 });
 
 function caricaDati(data) {
-    if (data.length > 21)
+    if (Object.keys(data).length === 0)
         window.location = "waitingPage";
     else {
         chart.addData(data, 21);
