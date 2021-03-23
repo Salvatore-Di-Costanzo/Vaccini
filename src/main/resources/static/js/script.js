@@ -18,7 +18,8 @@ fetch('/regioniContagi', {
                 //chart.scrollbarX = new am4core.Scrollbar();
 
 // Add data
-                data.pop();
+                if(data.length > 21 )
+                    data.pop()
                 chart.data = data;
 
 // Create axes

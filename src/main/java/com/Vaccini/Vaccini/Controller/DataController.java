@@ -29,7 +29,7 @@ public class DataController {
     }
 
 
-    @GetMapping("/index")
+    @GetMapping("/")
     public String homePage() {
         return "graph";
     }
