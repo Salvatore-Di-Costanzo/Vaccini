@@ -29,7 +29,7 @@ public class DataController {
     }
 
 
-    @GetMapping("/")
+    @GetMapping("/index")
     public String homePage() {
         return "graph";
     }
@@ -53,6 +53,5 @@ public class DataController {
         }
         return cache.get(data);
     }
-
 
 }
