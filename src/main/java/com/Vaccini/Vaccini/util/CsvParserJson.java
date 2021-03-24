@@ -20,9 +20,12 @@ public class CsvParserJson {
 
     @PostMapping("/json")
     public List<Map<?, ?>> jsonParser(@RequestParam(value = "url") String url) throws IOException {
-        String CSV = IOUtils.toString(new URL(url).openStream(), StandardCharsets.UTF_8);
-
-        return readObjectsFromCsv(CSV);
+        try{
+            String CSV = IOUtils.toString(new URL(url).openStream(), StandardCharsets.UTF_8);
+            return readObjectsFromCsv(CSV);
+        } catch(IOException e) {
+            return null;
+        }
     }
 
     public static List<Map<?, ?>> readObjectsFromCsv(String CSV) throws IOException {
