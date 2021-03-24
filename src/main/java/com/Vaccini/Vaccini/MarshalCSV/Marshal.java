@@ -6,20 +6,21 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
 
 @Slf4j
 @Component
 public class Marshal {
-    public List<RegioneContagi> getDati(String data) throws IOException {
+    public List<RegioneContagi> getDati(String data){
         String dataMod = data.replace("-", "");
-        List<RegioneContagi> dati;
+        List<RegioneContagi> dati = new ArrayList<>();
         final String URL_LASTES = "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-regioni/dpc-covid19-ita-regioni-latest.csv";
         String URL_DATA = "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-regioni/dpc-covid19-ita-regioni-" + dataMod + ".csv";
-        boolean corretto = true;
 
         String URL = "http://localhost:8080/";
 

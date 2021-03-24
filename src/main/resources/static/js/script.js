@@ -23,7 +23,7 @@ fetch('/regioniContagi', {
 
 // Create axes
                 let categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
-                categoryAxis.dataFields.category = "nomeRegione";
+                categoryAxis.dataFields.category = "denominazione_regione";
                 categoryAxis.renderer.grid.template.location = 0;
                 categoryAxis.renderer.minGridDistance = 30;
                 categoryAxis.renderer.labels.template.horizontalCenter = "right";
@@ -38,8 +38,8 @@ fetch('/regioniContagi', {
 // Create series
                 let series = chart.series.push(new am4charts.ColumnSeries());
                 series.sequencedInterpolation = true;
-                series.dataFields.valueY = "numeroContagi";
-                series.dataFields.categoryX = "nomeRegione";
+                series.dataFields.valueY = "nuovi_positivi";
+                series.dataFields.categoryX = "denominazione_regione";
                 series.tooltipText = "[{categoryX}: bold]{valueY}[/]";
                 series.columns.template.strokeWidth = 0;
 
