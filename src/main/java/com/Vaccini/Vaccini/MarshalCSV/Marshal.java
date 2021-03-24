@@ -6,17 +6,13 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
-
-import java.io.*;
-import java.util.ArrayList;
 import java.util.List;
 
 
 @Slf4j
 @Component
 public class Marshal {
-    public List<RegioneContagi> getDati(String data){
+    public List<RegioneContagi> getDati(String data) {
         String dataMod = data.replace("-", "");
         boolean corretto = true;
         List<RegioneContagi> dati;
@@ -39,9 +35,7 @@ public class Marshal {
                 .bodyToFlux(RegioneContagi.class);
         dati = bean.collectList().block();
 
-                dati.forEach(System.out::println);
-
-
+        assert dati != null;
         if (dati.isEmpty()){
            bean = webClient.post()
                     .uri(builder -> builder
@@ -55,6 +49,7 @@ public class Marshal {
            corretto = false;
         }
         if (!corretto){
+            assert dati != null;
             dati.add(new RegioneContagi("Error",0));
         }
 
