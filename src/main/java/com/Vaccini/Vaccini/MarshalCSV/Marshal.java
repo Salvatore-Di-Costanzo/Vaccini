@@ -35,7 +35,6 @@ public class Marshal {
                 .bodyToFlux(RegioneContagi.class);
         dati = bean.collectList().block();
 
-        assert dati != null;
         if (dati.isEmpty()){
            bean = webClient.post()
                     .uri(builder -> builder
@@ -49,7 +48,6 @@ public class Marshal {
            corretto = false;
         }
         if (!corretto){
-            assert dati != null;
             dati.add(new RegioneContagi("Error",0));
         }
 
