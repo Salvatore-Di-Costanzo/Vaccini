@@ -18,7 +18,8 @@ import java.util.List;
 public class Marshal {
     public List<RegioneContagi> getDati(String data){
         String dataMod = data.replace("-", "");
-        List<RegioneContagi> dati = new ArrayList<>();
+        boolean corretto = true;
+        List<RegioneContagi> dati;
         final String URL_LASTES = "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-regioni/dpc-covid19-ita-regioni-latest.csv";
         String URL_DATA = "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-regioni/dpc-covid19-ita-regioni-" + dataMod + ".csv";
 
@@ -51,6 +52,10 @@ public class Marshal {
                     .retrieve()
                     .bodyToFlux(RegioneContagi.class);
            dati = bean.collectList().block();
+           corretto = false;
+        }
+        if (!corretto){
+            dati.add(new RegioneContagi("Error",0));
         }
 
         return dati;
